@@ -1,0 +1,43 @@
+<!Doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+     <link rel="stylesheet" href="style.css">
+    <title>Login Page</title>
+</head>
+
+<body>
+    <form>
+        
+
+       
+
+        <label for="email">Email ID: </label>
+        <input type="email" id="email" name="email" placeholder="Enter your mail ID" required>
+
+        <label for="password">Password: </label>
+        <input type="password" id="password" name="pass" placeholder="Enter the password" required>
+
+        <button id="login" type="submit">Login</button>
+
+    </form>
+    <script>
+        document.querySelector("form").addEventListener("submit", function (e) {
+  e.preventDefault(); // stop page reload
+
+  const enteredEmail = document.getElementById("email").value.trim();
+
+  const storedUser = JSON.parse(localStorage.getItem("registeredUser"));
+
+  if (storedUser && storedUser.email === enteredEmail) {
+    console.log("User logged in:", storedUser); // you can check who logged in
+    window.location.href = "welcome.html"; // success
+  } else {
+    alert("Email not found. Please register first.");
+  }
+});
+
+    </script>
+</body>
+</html>
