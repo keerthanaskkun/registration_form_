@@ -3,15 +3,16 @@
 
 <head>
     <meta charset="UTF-8">
-     <link rel="stylesheet" href="style.css">
-    <title>Login Page</title>
+    <link rel="stylesheet" href="style.css">
+    <title>Registration Page</title>
 </head>
 
 <body>
     <form>
         
 
-       
+        <label for="username">Username: </label>
+        <input type="text" id="username" name="username" placeholder="Enter your username" required>
 
         <label for="email">Email ID: </label>
         <input type="email" id="email" name="email" placeholder="Enter your mail ID" required>
@@ -19,23 +20,28 @@
         <label for="password">Password: </label>
         <input type="password" id="password" name="pass" placeholder="Enter the password" required>
 
-        <button id="login" type="submit">Login</button>
+        <button id="register" type="submit"  >Register</button>
+        <a href="login.html"></a>
 
     </form>
     <script>
         document.querySelector("form").addEventListener("submit", function (e) {
-  e.preventDefault(); // stop page reload
+  e.preventDefault(); // prevent form refresh
 
-  const enteredEmail = document.getElementById("email").value.trim();
+  const username = document.getElementById("username").value.trim();
+  const email = document.getElementById("email").value.trim();
 
-  const storedUser = JSON.parse(localStorage.getItem("registeredUser"));
+  // Save only username and email in localStorage
+  const user = {
+    username: username,
+    email: email
+  };
 
-  if (storedUser && storedUser.email === enteredEmail) {
-    console.log("User logged in:", storedUser); // you can check who logged in
-    window.location.href = "welcome.html"; // success
-  } else {
-    alert("Email not found. Please register first.");
-  }
+  localStorage.setItem("registeredUser", JSON.stringify(user));
+
+  console.log("User registered:", user); // you can view this in browser DevTools
+
+  window.location.href = "login.html"; // Redirect to login
 });
 
     </script>
