@@ -1,53 +1,60 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Registration Page</title>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <title>Registration Page</title>
+    <link rel="stylesheet" href="style.css">
 
-    <!-- ✅ Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-X2SMP2Z5R6"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-X2SMP2Z5R6');
-    </script>
+    <!-- ✅ Google Analytics with custom user_entry timestamp -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-X2SMP2Z5R6"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-X2SMP2Z5R6');
+
+        // ✅ Send custom user_entry event with timestamp
+        gtag('event', 'user_entry', {
+            'timestamp': new Date().toISOString()
+        });
+    </script>
 </head>
 
 <body>
-    <form>
-        <label for="username">Username: </label>
-        <input type="text" id="username" name="username" placeholder="Enter your username" required>
 
-        <label for="email">Email ID: </label>
-        <input type="email" id="email" name="email" placeholder="Enter your mail ID" required>
+    <form>
+        <label for="username">Username: </label>
+        <input type="text" id="username" name="username" placeholder="Enter your username" required>
 
-        <label for="password">Password: </label>
-        <input type="password" id="password" name="pass" placeholder="Enter the password" required>
+        <label for="email">Email ID: </label>
+        <input type="email" id="email" name="email" placeholder="Enter your mail ID" required>
 
-        <button id="register" type="submit">Register</button>
-    </form>
+        <label for="password">Password: </label>
+        <input type="password" id="password" name="pass" placeholder="Enter the password" required>
 
-    <script>
-        document.querySelector("form").addEventListener("submit", function (e) {
-            e.preventDefault(); // prevent form refresh
+        <button id="register" type="submit">Register</button>
+    </form>
 
-            const username = document.getElementById("username").value.trim();
-            const email = document.getElementById("email").value.trim();
+    <script>
+        document.querySelector("form").addEventListener("submit", function (e) {
+            e.preventDefault(); // prevent form refresh
 
-            // Save only username and email in localStorage
-            const user = {
-                username: username,
-                email: email
-            };
+            const username = document.getElementById("username").value.trim();
+            const email = document.getElementById("email").value.trim();
 
-            localStorage.setItem("registeredUser", JSON.stringify(user));
-            console.log("User registered:", user);
+            // Save only username and email in localStorage
+            const user = {
+                username: username,
+                email: email
+            };
 
-            window.location.href = "login.html"; // Redirect to login
-        });
-    </script>
+            localStorage.setItem("registeredUser", JSON.stringify(user));
+            console.log("User registered:", user);
+
+            window.location.href = "login.html"; // Redirect to login
+        });
+    </script> 
+
 </body>
 </html>
